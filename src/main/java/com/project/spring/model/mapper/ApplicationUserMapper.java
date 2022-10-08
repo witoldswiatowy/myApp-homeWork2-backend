@@ -1,6 +1,6 @@
 package com.project.spring.model.mapper;
 
-import com.project.spring.model.dto.ApplicationUserDTO;
+import com.project.spring.model.dto.ApplicationUserDto;
 import com.project.spring.model.dto.CreateUserRequest;
 import com.project.spring.model.ApplicationUser;
 import org.mapstruct.Mapper;
@@ -17,10 +17,15 @@ public interface ApplicationUserMapper {
 
     @Mappings(value = {
             @Mapping(target = "id", ignore = true),
-            @Mapping(target = "username", source = "login"),
-            @Mapping(target = "password", source = "pass"),
+//            @Mapping(target = "createDate", source = "createDate"),
+//            @Mapping(target = "updateDate", source = "updateDate"),
+//            @Mapping(target = "version", source = "version"),
             @Mapping(target = "firstName", source = "name"),
             @Mapping(target = "lastName", source = "surname"),
+            @Mapping(target = "email", source = "email"),
+            @Mapping(target = "phoneNumber", source = "phoneNumber"),
+            @Mapping(target = "username", source = "login"),
+            @Mapping(target = "password", source = "pass"),
             @Mapping(target = "enabled", constant = "true"),
             @Mapping(target = "accountNonExpired", constant = "true"),
             @Mapping(target = "accountNonLocked", constant = "true"),
@@ -33,8 +38,10 @@ public interface ApplicationUserMapper {
             @Mapping(source = "username", target = "login"),
             @Mapping(source = "firstName", target = "name"),
             @Mapping(source = "lastName", target = "surname"),
+            @Mapping(source = "email", target = "email"),
+            @Mapping(source = "phoneNumber", target = "phoneNumber"),
             @Mapping(expression = "java(applicationUser.getRoles().stream().map(role -> role.getName()).collect(Collectors.toList()))", target = "roles")
     })
-    ApplicationUserDTO mapApplicationUserToDTO(ApplicationUser applicationUser);
+    ApplicationUserDto mapApplicationUserToDTO(ApplicationUser applicationUser);
 
 }

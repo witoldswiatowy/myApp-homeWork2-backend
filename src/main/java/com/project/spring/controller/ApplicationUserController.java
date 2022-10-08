@@ -1,6 +1,6 @@
 package com.project.spring.controller;
 
-import com.project.spring.model.dto.ApplicationUserDTO;
+import com.project.spring.model.dto.ApplicationUserDto;
 import com.project.spring.model.dto.CreateUserRequest;
 import com.project.spring.service.ApplicationUserService;
 import lombok.RequiredArgsConstructor;
@@ -27,14 +27,14 @@ public class ApplicationUserController {
     @CrossOrigin()
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasRole('ADMIN') && hasRole('MODERATOR')")
-    public List<ApplicationUserDTO> getListOfUsers(){
+    public List<ApplicationUserDto> getListOfUsers(){
         return applicationUserService.listUsers();
     }
 
     @PostMapping()
     @CrossOrigin()
     @ResponseStatus(HttpStatus.CREATED)
-    public ApplicationUserDTO postNewUser(@RequestBody CreateUserRequest request){
+    public ApplicationUserDto postNewUser(@RequestBody CreateUserRequest request){
         return applicationUserService.addUser(request);
     }
 }

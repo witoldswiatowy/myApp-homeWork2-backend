@@ -18,18 +18,12 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApplicationUser implements UserDetails {
+public class ApplicationUser extends PersonEntity implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(unique = true, nullable = false)
     private String username;
     private String password;
-
-    private String firstName;
-    private String lastName;
 
     private boolean accountNonExpired;
     private boolean accountNonLocked;
